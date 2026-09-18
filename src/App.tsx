@@ -9,6 +9,7 @@ import { MenuPage } from './pages/MenuPage';
 import { AboutPage } from './pages/AboutPage';
 import { GalleryPage } from './pages/GalleryPage';
 import { ReservationsPage } from './pages/ReservationsPage';
+import { BanquetPage } from './pages/BanquetPage';
 import { ContactPage } from './pages/ContactPage';
 
 export default function App() {
@@ -19,7 +20,7 @@ export default function App() {
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.replace('#', '').toLowerCase();
-      if (['home', 'menu', 'about', 'gallery', 'reservations', 'contact'].includes(hash)) {
+      if (['home', 'menu', 'banquet', 'about', 'gallery', 'reservations', 'contact'].includes(hash)) {
         setCurrentPage(hash as Page);
       }
     };
@@ -36,12 +37,13 @@ export default function App() {
 
     // Page title sync for SEO
     const titles: Record<Page, string> = {
-      home: 'OneTen | Contemporary Indian Restaurant in Ahmedabad',
-      menu: 'Menu | OneTen – Contemporary Indian Cuisine & Tandoor',
-      about: 'Our Story & Philosophy | OneTen Ahmedabad',
-      gallery: 'Visual Gallery | OneTen Contemporary Dining',
-      reservations: 'Reserve a Table | OneTen Ahmedabad',
-      contact: 'Contact & Location | OneTen Ahmedabad',
+      home: 'One Ten Restaurant & Banquet | Chandkheda, Ahmedabad',
+      menu: 'Menu | One Ten Restaurant & Banquet – North Indian & Punjabi Thali',
+      banquet: '1,700 sq. ft. Banquet & Event Halls | One Ten Restaurant & Banquet',
+      about: 'About Us & Profile | One Ten Restaurant & Banquet Chandkheda',
+      gallery: 'Photo Gallery & Venue Visuals | One Ten Restaurant & Banquet',
+      reservations: 'Table & Event Booking | One Ten Restaurant & Banquet',
+      contact: 'Location & Contact | Highway Mall, Chandkheda, Ahmedabad',
     };
     document.title = titles[page];
   };
@@ -52,6 +54,8 @@ export default function App() {
         return <HomePage onNavigate={handleNavigate} />;
       case 'menu':
         return <MenuPage onNavigate={handleNavigate} />;
+      case 'banquet':
+        return <BanquetPage onNavigate={handleNavigate} />;
       case 'about':
         return <AboutPage onNavigate={handleNavigate} />;
       case 'gallery':

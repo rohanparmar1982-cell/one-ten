@@ -46,24 +46,38 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
         {/* Eyebrow / Region Badge */}
         <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#171722]/80 border border-[#c5a059]/30 backdrop-blur-md mb-6 shadow-lg shadow-black/40">
           <Flame className="w-3.5 h-3.5 text-[#e05326] animate-pulse" />
-          <span className="text-xs uppercase tracking-[0.3em] text-[#e3ded2] font-medium font-sans">
-            Contemporary Indian Fine Dining · Ahmedabad
+          <span className="text-xs uppercase tracking-[0.25em] text-[#e3ded2] font-medium font-sans">
+            North Indian Restaurant & Banquet · Chandkheda, Ahmedabad
           </span>
           <Sparkles className="w-3 h-3 text-[#c5a059]" />
         </div>
 
+        {/* Gujarati Name Display */}
+        <p className="text-lg sm:text-xl font-medium text-[#c5a059] tracking-wider mb-2">
+          વન ટેન રેસ્ટોરન્ટ એન્ડ બેન્ક્વેટ
+        </p>
+
         {/* Main Headline */}
         <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-serif text-[#f4efe4] font-normal tracking-tight leading-[1.08] mb-6 drop-shadow-2xl">
-          WHERE FIRE <br className="hidden sm:inline" />
+          ONE TEN <br className="hidden sm:inline" />
           <span className="font-serif italic font-light text-transparent bg-clip-text bg-gradient-to-r from-[#f89e5a] via-[#f4efe4] to-[#c5a059]">
-            MEETS FLAVOR
+            RESTAURANT & BANQUET
           </span>
         </h1>
 
         {/* Subtitle */}
-        <p className="max-w-2xl mx-auto text-base sm:text-xl text-[#d4cebe] font-sans font-normal leading-relaxed mb-10 text-balance drop-shadow">
-          Contemporary Indian cuisine crafted over flame, spice, and tradition.
+        <p className="max-w-2xl mx-auto text-base sm:text-xl text-[#d4cebe] font-sans font-normal leading-relaxed mb-8 text-balance drop-shadow">
+          Vegetarian North Indian & Indo-Chinese dining, famous fixed Punjabi thalis, and a premier 1,700 sq. ft. banquet venue for unforgettable celebrations.
         </p>
+
+        {/* Services pill */}
+        <div className="flex items-center justify-center gap-2 text-xs text-[#a09b8e] mb-8 font-medium">
+          <span className="px-3 py-1 rounded-full bg-[#181824] border border-[#2c2c3e]">Dine-in</span>
+          <span>•</span>
+          <span className="px-3 py-1 rounded-full bg-[#181824] border border-[#2c2c3e]">Takeaway</span>
+          <span>•</span>
+          <span className="px-3 py-1 rounded-full bg-[#181824] border border-[#2c2c3e]">No-contact delivery</span>
+        </div>
 
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
@@ -73,10 +87,21 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
               onNavigate('menu');
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-[#181822] hover:bg-[#222230] text-[#f4efe4] text-xs sm:text-sm uppercase tracking-widest font-semibold border border-[#383849] hover:border-[#c5a059] transition-all duration-300 group shadow-lg shadow-black/50 active:scale-95"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-full bg-[#181822] hover:bg-[#222230] text-[#f4efe4] text-xs sm:text-sm uppercase tracking-widest font-semibold border border-[#383849] hover:border-[#c5a059] transition-all duration-300 group shadow-lg shadow-black/50 active:scale-95 cursor-pointer"
           >
             <span>Explore Menu</span>
             <ArrowRight className="w-4 h-4 text-[#e05326] group-hover:translate-x-1 transition-transform" />
+          </button>
+
+          <button
+            id="hero-explore-banquet-btn"
+            onClick={() => {
+              onNavigate('banquet');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-full bg-[#20202e] hover:bg-[#2a2a3e] text-[#c5a059] text-xs sm:text-sm uppercase tracking-widest font-semibold border border-[#c5a059]/40 hover:border-[#c5a059] transition-all duration-300 shadow-lg shadow-black/50 active:scale-95 cursor-pointer"
+          >
+            <span>Banquet Halls (50–500)</span>
           </button>
 
           <button
@@ -85,30 +110,30 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
               onNavigate('reservations');
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-[#e05326] hover:bg-[#eb5d2f] text-[#f7f4eb] text-xs sm:text-sm uppercase tracking-widest font-semibold transition-all duration-300 shadow-xl shadow-[#e05326]/30 hover:shadow-2xl hover:shadow-[#e05326]/50 border border-[#f89e5a]/40 active:scale-95"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-full bg-[#e05326] hover:bg-[#eb5d2f] text-[#f7f4eb] text-xs sm:text-sm uppercase tracking-widest font-semibold transition-all duration-300 shadow-xl shadow-[#e05326]/30 hover:shadow-2xl hover:shadow-[#e05326]/50 border border-[#f89e5a]/40 active:scale-95 cursor-pointer"
           >
             <Calendar className="w-4 h-4" />
-            <span>Reserve a Table</span>
+            <span>Book Table</span>
           </button>
         </div>
 
-        {/* Key credentials bar */}
+        {/* Key credentials bar from PDF */}
         <div className="mt-14 pt-8 border-t border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-10 w-full max-w-3xl text-center">
           <div>
-            <p className="text-xl sm:text-2xl font-serif text-[#f4efe4]">Live Charcoal</p>
-            <p className="text-[11px] uppercase tracking-wider text-[#9d978a] mt-0.5">Tandoor Clay Oven</p>
+            <p className="text-xl sm:text-2xl font-serif text-[#f4efe4]">3.7 ★</p>
+            <p className="text-[11px] uppercase tracking-wider text-[#9d978a] mt-0.5">1,704 Google Reviews</p>
           </div>
           <div>
-            <p className="text-xl sm:text-2xl font-serif text-[#f4efe4]">36-Hour</p>
-            <p className="text-[11px] uppercase tracking-wider text-[#9d978a] mt-0.5">Slow Simmered Dal</p>
+            <p className="text-xl sm:text-2xl font-serif text-[#f4efe4]">₹200–₹400</p>
+            <p className="text-[11px] uppercase tracking-wider text-[#9d978a] mt-0.5">Approx. Per Person</p>
           </div>
           <div>
-            <p className="text-xl sm:text-2xl font-serif text-[#f4efe4]">Organic</p>
-            <p className="text-[11px] uppercase tracking-wider text-[#9d978a] mt-0.5">Seasonal Spices</p>
+            <p className="text-xl sm:text-2xl font-serif text-[#f4efe4]">1,700 sq. ft.</p>
+            <p className="text-[11px] uppercase tracking-wider text-[#9d978a] mt-0.5">Banquet Hall Space</p>
           </div>
           <div>
-            <p className="text-xl sm:text-2xl font-serif text-[#f4efe4]">Ahmedabad</p>
-            <p className="text-[11px] uppercase tracking-wider text-[#9d978a] mt-0.5">Bodakdev · SG Highway</p>
+            <p className="text-xl sm:text-2xl font-serif text-[#f4efe4]">Chandkheda</p>
+            <p className="text-[11px] uppercase tracking-wider text-[#9d978a] mt-0.5">Highway Mall · Ahmedabad</p>
           </div>
         </div>
       </div>

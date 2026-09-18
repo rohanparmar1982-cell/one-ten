@@ -1,6 +1,6 @@
 {
-  "name": "Ember & Spice",
-  "description": "Ember & Spice is a luxury contemporary Indian restaurant in Ahmedabad, Gujarat, crafting innovative fine-dining over flame, spice, and tradition.",
+  "name": "One Ten Restaurant & Banquet",
+  "description": "One Ten Restaurant & Banquet (વન ટેન રેસ્ટોરન્ટ એન્ડ બેન્ક્વેટ) in Chandkheda, Ahmedabad, offering authentic North Indian cuisine, Punjabi thalis, and a premier 1,700 sq. ft. banquet venue.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

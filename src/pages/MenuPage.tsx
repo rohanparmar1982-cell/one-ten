@@ -19,12 +19,8 @@ export const MenuPage: React.FC<MenuPageProps> = ({ onNavigate }) => {
   const filteredDishes = useMemo(() => {
     return FULL_MENU.filter((dish) => {
       // Category filter
-      if (activeCategory !== 'all') {
-        if (activeCategory === 'vegetarian' && !dish.isVeg) return false;
-        if (activeCategory === 'non-vegetarian' && dish.isVeg) return false;
-        if (activeCategory !== 'vegetarian' && activeCategory !== 'non-vegetarian' && dish.category !== activeCategory) {
-          return false;
-        }
+      if (activeCategory !== 'all' && dish.category !== activeCategory) {
+        return false;
       }
 
       // Veg only toggle

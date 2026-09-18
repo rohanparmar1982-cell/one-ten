@@ -1,12 +1,13 @@
-export type Page = 'home' | 'menu' | 'about' | 'gallery' | 'reservations' | 'contact';
+export type Page = 'home' | 'menu' | 'banquet' | 'about' | 'gallery' | 'reservations' | 'contact';
 
 export type MenuCategoryId = 
   | 'all' 
+  | 'thali'
+  | 'paneer-special'
   | 'starters' 
   | 'tandoor' 
   | 'mains' 
-  | 'vegetarian' 
-  | 'non-vegetarian' 
+  | 'chinese'
   | 'breads' 
   | 'rice' 
   | 'desserts' 
@@ -55,7 +56,7 @@ export interface ReservationFormData {
   date: string;
   time: string;
   guests: number;
-  seatingPreference: 'indoor-main' | 'private-dining' | 'patio-terrace' | 'chefs-counter';
+  seatingPreference: 'restaurant-dining' | 'banquet-hall' | 'family-section' | 'party-hall';
   occasion: string;
   specialRequests: string;
 }

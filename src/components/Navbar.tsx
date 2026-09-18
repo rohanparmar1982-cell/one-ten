@@ -24,6 +24,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
   const navLinks: { label: string; page: Page }[] = [
     { label: 'Home', page: 'home' },
     { label: 'Menu', page: 'menu' },
+    { label: 'Banquet & Events', page: 'banquet' },
     { label: 'About', page: 'about' },
     { label: 'Gallery', page: 'gallery' },
     { label: 'Reservations', page: 'reservations' },
@@ -42,33 +43,38 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
           ? 'bg-[#0d0d12]/95 backdrop-blur-md py-3.5 border-b border-[#24242e] shadow-xl shadow-black/40'
-          : 'bg-gradient-to-b from-[#0b0b0e]/90 via-[#0b0b0e]/40 to-transparent py-5'
+          : 'bg-gradient-to-b from-[#0b0b0e]/90 via-[#0b0b0e]/40 to-transparent py-4'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Logo */}
+          {/* Logo with English & Gujarati names */}
           <button
             id="brand-logo-btn"
             onClick={() => handleLinkClick('home')}
             className="flex items-center gap-3 text-left group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#e05326] rounded p-1"
-            aria-label="OneTen Home"
+            aria-label="One Ten Restaurant & Banquet Home"
           >
-            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-[#e05326] to-[#9a2c08] flex items-center justify-center shadow-lg shadow-[#e05326]/20 group-hover:scale-105 transition-transform duration-300">
+            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-gradient-to-br from-[#e05326] to-[#9a2c08] flex items-center justify-center shadow-lg shadow-[#e05326]/25 group-hover:scale-105 transition-transform duration-300 shrink-0">
               <Flame className="w-5 h-5 text-[#f7f4eb]" />
             </div>
             <div className="flex flex-col">
-              <span className="font-serif text-lg sm:text-xl md:text-2xl tracking-wider text-[#f4efe4] font-semibold group-hover:text-[#f89e5a] transition-colors">
-                ONETEN
-              </span>
-              <span className="text-[10px] tracking-[0.25em] text-[#c5a059] uppercase -mt-0.5">
-                Fine Dining · Ahmedabad
+              <div className="flex items-center gap-2">
+                <span className="font-serif text-lg sm:text-xl tracking-wider text-[#f4efe4] font-bold group-hover:text-[#f89e5a] transition-colors">
+                  ONE TEN
+                </span>
+                <span className="hidden sm:inline-block text-[11px] px-2 py-0.5 rounded-full bg-[#1e1e2c] border border-[#3b3b4f] text-[#c5a059] font-medium">
+                  {RESTAURANT_INFO.gujaratiName}
+                </span>
+              </div>
+              <span className="text-[10px] tracking-[0.2em] text-[#c5a059] uppercase -mt-0.5">
+                Restaurant & Banquet · Chandkheda
               </span>
             </div>
           </button>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-8" aria-label="Desktop Navigation">
+          <nav className="hidden lg:flex items-center gap-6 xl:gap-7" aria-label="Desktop Navigation">
             {navLinks.map((link) => {
               const isActive = currentPage === link.page;
               return (
@@ -76,7 +82,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
                   key={link.page}
                   id={`nav-link-${link.page}`}
                   onClick={() => handleLinkClick(link.page)}
-                  className={`relative text-sm tracking-widest uppercase transition-colors duration-200 py-1 font-medium ${
+                  className={`relative text-xs xl:text-sm tracking-wider uppercase transition-colors duration-200 py-1 font-medium ${
                     isActive
                       ? 'text-[#f4efe4] font-semibold'
                       : 'text-[#b8b3a8] hover:text-[#f4efe4]'
@@ -95,8 +101,8 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
           <div className="hidden lg:flex items-center gap-4">
             <a
               href={`tel:${RESTAURANT_INFO.phone.replace(/\s+/g, '')}`}
-              className="flex items-center gap-1.5 text-xs text-[#b8b3a8] hover:text-[#f4efe4] transition-colors px-2 py-1"
-              title="Call OneTen"
+              className="flex items-center gap-1.5 text-xs text-[#b8b3a8] hover:text-[#f4efe4] transition-colors px-2 py-1 font-mono"
+              title="Call One Ten Restaurant & Banquet"
             >
               <Phone className="w-3.5 h-3.5 text-[#e05326]" />
               <span>{RESTAURANT_INFO.phoneFormatted}</span>
@@ -105,10 +111,10 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
             <button
               id="desktop-reserve-cta"
               onClick={() => handleLinkClick('reservations')}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#e05326] hover:bg-[#eb5d2f] active:scale-[0.98] text-[#f7f4eb] text-xs uppercase tracking-widest font-semibold transition-all duration-200 shadow-md shadow-[#e05326]/25 hover:shadow-lg hover:shadow-[#e05326]/40 border border-[#f89e5a]/30"
+              className="inline-flex items-center gap-2 px-4.5 py-2 rounded-full bg-[#e05326] hover:bg-[#eb5d2f] active:scale-[0.98] text-[#f7f4eb] text-xs uppercase tracking-wider font-semibold transition-all duration-200 shadow-md shadow-[#e05326]/25 hover:shadow-lg hover:shadow-[#e05326]/40 border border-[#f89e5a]/30"
             >
               <Calendar className="w-3.5 h-3.5" />
-              <span>Reserve a Table</span>
+              <span>Book Table</span>
             </button>
           </div>
 

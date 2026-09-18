@@ -52,7 +52,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               </div>
             </div>
 
-            {/* Right: The Ember Experience */}
+            {/* Right: The One Ten Experience */}
             <div className="lg:col-span-6 lg:pl-4 space-y-6">
               <div className="inline-flex items-center gap-2">
                 <span className="w-6 h-px bg-[#e05326]"></span>
@@ -62,29 +62,41 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               </div>
 
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-[#f4efe4] font-normal leading-tight">
-                THE EMBER EXPERIENCE
+                THE ONE TEN EXPERIENCE
               </h2>
 
               <p className="text-base sm:text-lg text-[#d4cebe] font-sans leading-relaxed text-balance">
-                At Ember & Spice, centuries-old Indian culinary traditions meet contemporary technique. Every dish is designed around fire, spice, texture, and the finest seasonal ingredients.
+                Located conveniently at Highway Mall, Chandkheda, One Ten Restaurant & Banquet brings together authentic North Indian delicacies, hearty Punjabi Thalis, and Indo-Chinese favorites with a spacious 1,700 sq. ft. event venue.
               </p>
 
               <p className="text-sm sm:text-base text-[#9d978a] leading-relaxed">
-                From slow charcoal-braised cuts in heavy copper handis to dramatic live clay tandoor roasts, our Ahmedabad kitchen brings together regional spice masters, cold-pressed artisanal oils, and modern gastronomy flair.
+                Whether you are joining us for our famous Fixed Punjabi Thali lunch, savoring smoky Paneer Angara and Handi Paneer for dinner, or organizing a grand 50–500 guest family wedding or corporate function, we offer delicious vegetarian cuisine and attentive hospitality.
               </p>
 
-              {/* Discover Our Story Button */}
-              <div className="pt-2">
+              {/* Discover Our Story Button & Banquet Link */}
+              <div className="pt-2 flex flex-wrap gap-4">
                 <button
                   id="discover-story-btn"
                   onClick={() => {
                     onNavigate('about');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
-                  className="inline-flex items-center gap-3 px-7 py-3.5 rounded-full bg-[#181822] hover:bg-[#252535] text-[#f4efe4] text-xs uppercase tracking-widest font-semibold border border-[#303042] hover:border-[#c5a059] transition-all duration-200 group shadow-lg shadow-black/40"
+                  className="inline-flex items-center gap-3 px-7 py-3.5 rounded-full bg-[#181822] hover:bg-[#252535] text-[#f4efe4] text-xs uppercase tracking-widest font-semibold border border-[#303042] hover:border-[#c5a059] transition-all duration-200 group shadow-lg shadow-black/40 cursor-pointer"
                 >
                   <span>Discover Our Story</span>
                   <ArrowRight className="w-4 h-4 text-[#e05326] group-hover:translate-x-1 transition-transform" />
+                </button>
+
+                <button
+                  id="explore-banquet-intro-btn"
+                  onClick={() => {
+                    onNavigate('banquet');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#222232] hover:bg-[#2a2a3f] text-[#c5a059] text-xs uppercase tracking-widest font-semibold border border-[#c5a059]/30 hover:border-[#c5a059] transition-all duration-200 cursor-pointer"
+                >
+                  <span>1,700 sq. ft. Banquet</span>
+                  <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
             </div>
@@ -98,7 +110,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           <SectionHeading
             badge="Culinary Highlights"
             title="OUR SIGNATURES"
-            subtitle="A taste of what defines Ember & Spice."
+            subtitle="Signature Paneer creations, clay tandoor roasts, and our famous Punjabi Thali."
           />
 
           {/* 6 Signature Dishes Grid */}
@@ -132,7 +144,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           <SectionHeading
             badge="The Hallmarks"
             title="WHY CHOOSE US"
-            subtitle="Four foundational pillars of fine contemporary dining that elevate every evening at Ember & Spice."
+            subtitle="Four foundational pillars that elevate every meal and celebration at One Ten Restaurant & Banquet."
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -180,7 +192,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           </h2>
 
           <p className="max-w-2xl mx-auto text-base sm:text-xl text-[#d4cebe] font-sans leading-relaxed mb-10 text-balance">
-            From intimate dinners to unforgettable celebrations, every detail at Ember & Spice is designed to make your evening extraordinary.
+            From intimate family dinners to grand 500-guest wedding and corporate functions, every detail at One Ten Restaurant & Banquet is designed to make your occasion extraordinary.
           </p>
 
           <button

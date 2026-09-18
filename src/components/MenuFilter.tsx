@@ -22,14 +22,16 @@ export const MenuFilter: React.FC<MenuFilterProps> = ({
   itemCount,
 }) => {
   const categories: { id: MenuCategoryId; label: string }[] = [
-    { id: 'all', label: 'All Dishes' },
-    { id: 'starters', label: 'Starters' },
-    { id: 'tandoor', label: 'Tandoor' },
-    { id: 'mains', label: 'Main Course' },
-    { id: 'breads', label: 'Breads' },
+    { id: 'all', label: 'All Items' },
+    { id: 'thali', label: 'Punjabi Thalis' },
+    { id: 'paneer-special', label: 'Paneer Specials' },
+    { id: 'tandoor', label: 'Tandoor Starters' },
+    { id: 'mains', label: 'Main Course & Dal' },
+    { id: 'chinese', label: 'Indo-Chinese' },
+    { id: 'breads', label: 'Tandoori Breads' },
     { id: 'rice', label: 'Rice & Biryani' },
-    { id: 'desserts', label: 'Desserts' },
-    { id: 'beverages', label: 'Beverages' },
+    { id: 'desserts', label: 'Dessert & Ice Cream' },
+    { id: 'beverages', label: 'Chaas & Beverages' },
   ];
 
   return (

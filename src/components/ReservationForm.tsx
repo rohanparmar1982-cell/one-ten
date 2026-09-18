@@ -21,7 +21,7 @@ export const ReservationForm: React.FC = () => {
     date: todayString,
     time: '19:30',
     guests: 2,
-    seatingPreference: 'indoor-main',
+    seatingPreference: 'restaurant-dining',
     occasion: 'none',
     specialRequests: '',
   });
@@ -142,7 +142,7 @@ export const ReservationForm: React.FC = () => {
       date: todayString,
       time: '19:30',
       guests: 2,
-      seatingPreference: 'indoor-main',
+      seatingPreference: 'restaurant-dining',
       occasion: 'none',
       specialRequests: '',
     });
@@ -468,10 +468,10 @@ export const ReservationForm: React.FC = () => {
               onChange={(e) => setFormData({ ...formData, seatingPreference: e.target.value as any })}
               className="w-full bg-[#181822] border border-[#292938] focus:border-[#e05326] rounded-xl px-4 py-3 text-sm text-[#f4efe4] focus:outline-none"
             >
-              <option value="indoor-main" className="bg-[#14141c]">Main Dining Hall (Warm Ember Glow)</option>
-              <option value="private-dining" className="bg-[#14141c]">The Private Cellar (Exclusive 8-14 Seats)</option>
-              <option value="patio-terrace" className="bg-[#14141c]">Open Veranda Terrace</option>
-              <option value="chefs-counter" className="bg-[#14141c]">Chef's Live Tandoor Counter</option>
+              <option value="restaurant-dining" className="bg-[#14141c]">Restaurant Main Dining (AC)</option>
+              <option value="banquet-hall" className="bg-[#14141c]">Banquet Hall (Functions & Celebrations)</option>
+              <option value="family-section" className="bg-[#14141c]">Family Section (Spacious Seating)</option>
+              <option value="party-hall" className="bg-[#14141c]">Private Party Hall (Group Gatherings)</option>
             </select>
           </div>
 
