@@ -1,0 +1,7 @@
+{
+  "name": "Ember & Spice",
+  "description": "Ember & Spice is a luxury contemporary Indian restaurant in Ahmedabad, Gujarat, crafting innovative fine-dining over flame, spice, and tradition.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
