@@ -76,3 +76,20 @@ export interface ContactFormData {
   subject: string;
   message: string;
 }
+
+export interface ReservationRecord {
+  id?: string;
+  booking_reference: string;
+  full_name: string;
+  email: string;
+  phone: string;
+  date: string;
+  time: string;
+  guests: number;
+  seating_preference: string;
+  occasion: string;
+  special_requests?: string;
+  status?: string;
+  created_at?: string;
+}
+

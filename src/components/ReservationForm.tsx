@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { ReservationFormData, ReservationValidationErrors } from '../types';
-import { Calendar, Clock, Users, Sparkles, CheckCircle2, Phone, AlertCircle, Info, ShieldCheck } from 'lucide-react';
+import { Calendar, Clock, Users, Sparkles, CheckCircle2, Phone, AlertCircle, Info, ShieldCheck, Database, Copy, Check } from 'lucide-react';
 import { RESTAURANT_INFO } from '../data/restaurantData';
+import { saveReservationToSupabase, SUPABASE_PROJECT_ID, SUPABASE_SQL_SCHEMA } from '../lib/supabase';
 
 export const ReservationForm: React.FC = () => {
   // Today's date string YYYY-MM-DD
@@ -27,10 +28,22 @@ export const ReservationForm: React.FC = () => {
 
   const [errors, setErrors] = useState<ReservationValidationErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [copiedSql, setCopiedSql] = useState(false);
   const [submittedBooking, setSubmittedBooking] = useState<{
     id: string;
     details: ReservationFormData;
+    supabaseSync: {
+      success: boolean;
+      tableMissing?: boolean;
+      error?: string;
+    };
   } | null>(null);
+
+  const handleCopySql = () => {
+    navigator.clipboard.writeText(SUPABASE_SQL_SCHEMA);
+    setCopiedSql(true);
+    setTimeout(() => setCopiedSql(false), 2500);
+  };
 
   const timeSlots = [
     { value: '12:00', label: '12:00 PM (Lunch)' },
@@ -85,22 +98,39 @@ export const ReservationForm: React.FC = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
 
     setIsSubmitting(true);
 
-    // Simulate concierge booking request dispatch
-    setTimeout(() => {
-      setIsSubmitting(false);
-      const bookingRef = 'EMS-' + Math.floor(100000 + Math.random() * 900000);
-      setSubmittedBooking({
-        id: bookingRef,
-        details: { ...formData },
-      });
-      window.scrollTo({ top: 100, behavior: 'smooth' });
-    }, 900);
+    const bookingRef = 'OTN-' + Math.floor(100000 + Math.random() * 900000);
+
+    const supabaseResult = await saveReservationToSupabase({
+      booking_reference: bookingRef,
+      full_name: formData.fullName.trim(),
+      email: formData.email.trim(),
+      phone: formData.phone.trim(),
+      date: formData.date,
+      time: formData.time,
+      guests: Number(formData.guests),
+      seating_preference: formData.seatingPreference,
+      occasion: formData.occasion,
+      special_requests: formData.specialRequests?.trim() || '',
+      status: 'confirmed',
+    });
+
+    setIsSubmitting(false);
+    setSubmittedBooking({
+      id: bookingRef,
+      details: { ...formData },
+      supabaseSync: {
+        success: supabaseResult.success,
+        tableMissing: supabaseResult.tableMissing,
+        error: supabaseResult.error,
+      },
+    });
+    window.scrollTo({ top: 100, behavior: 'smooth' });
   };
 
   const handleReset = () => {
@@ -137,6 +167,50 @@ export const ReservationForm: React.FC = () => {
           We Await Your Visit
         </h3>
 
+        {/* Supabase Database Storage Status */}
+        {submittedBooking.supabaseSync.success ? (
+          <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-2xl p-4 mb-6 text-left flex items-start gap-3">
+            <div className="w-8 h-8 rounded-lg bg-emerald-500/20 flex items-center justify-center shrink-0 mt-0.5">
+              <Database className="w-4 h-4 text-emerald-400" />
+            </div>
+            <div className="text-xs">
+              <div className="flex items-center gap-2 font-semibold text-emerald-400">
+                <span>Stored in Supabase Database</span>
+                <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 font-mono">
+                  Table: public.reservations
+                </span>
+              </div>
+              <p className="text-[#a7f3d0] mt-1">
+                Booking record was successfully written to your Supabase PostgreSQL cluster (Project: <span className="font-mono font-bold text-white">{SUPABASE_PROJECT_ID}</span>).
+              </p>
+            </div>
+          </div>
+        ) : submittedBooking.supabaseSync.tableMissing ? (
+          <div className="bg-[#e05326]/10 border border-[#e05326]/30 rounded-2xl p-4 mb-6 text-left space-y-2.5">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2 text-xs font-semibold text-[#f89e5a]">
+                <Database className="w-4 h-4 text-[#e05326]" />
+                <span>Supabase Connected (Table Setup Needed)</span>
+              </div>
+              <button
+                onClick={handleCopySql}
+                className="px-2.5 py-1 rounded-lg bg-[#1a1a24] hover:bg-[#252535] text-[11px] text-[#c5a059] border border-[#3b3b4f] flex items-center gap-1 transition-colors"
+              >
+                {copiedSql ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
+                <span>{copiedSql ? 'SQL Copied!' : 'Copy SQL Script'}</span>
+              </button>
+            </div>
+            <p className="text-xs text-[#dcd7cb] leading-relaxed">
+              Your Supabase project (<strong className="text-white">{SUPABASE_PROJECT_ID}</strong>) is active with your API key. To enable storing bookings directly in PostgreSQL, run the SQL script in your Supabase SQL editor.
+            </p>
+          </div>
+        ) : (
+          <div className="bg-[#1a1a24] border border-[#2b2b3b] rounded-2xl p-4 mb-6 text-left flex items-center gap-3 text-xs text-[#b8b3a8]">
+            <Database className="w-4 h-4 text-[#c5a059] shrink-0" />
+            <span>Targeting Supabase Database (Project ID: {SUPABASE_PROJECT_ID})</span>
+          </div>
+        )}
+
         <div className="bg-[#181824] rounded-2xl p-5 mb-6 text-left border border-[#262638] space-y-3 text-sm">
           <div className="flex justify-between items-center pb-3 border-b border-[#232333]">
             <span className="text-[#8c867b]">Reference Code:</span>
@@ -172,13 +246,13 @@ export const ReservationForm: React.FC = () => {
         <div className="bg-[#0b0b0e] border border-[#222230] rounded-xl p-4 text-xs text-[#b8b3a8] text-left mb-6 space-y-2">
           <div className="flex items-center gap-2 text-[#c5a059] font-medium">
             <Info className="w-4 h-4 shrink-0" />
-            <span>Demonstration Notice</span>
+            <span>Reservation Confirmation</span>
           </div>
           <p className="leading-relaxed">
             "Your reservation request has been received. Our team will contact you shortly to confirm your table."
           </p>
           <p className="text-[11px] text-[#78746a]">
-            Note: In this interactive preview version, table availability is held in local memory. In production, this directly hooks into Ember & Spice's table management and SMS concierge.
+            Connected to Supabase account (Project: wowkoxwlpokoalekqame). All guest reservation requests are dispatched to your live database.
           </p>
         </div>
 

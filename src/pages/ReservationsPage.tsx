@@ -1,5 +1,6 @@
 import React from 'react';
 import { ReservationForm } from '../components/ReservationForm';
+import { SupabaseReservationsManager } from '../components/SupabaseReservationsManager';
 import { Calendar, Clock, Phone, Sparkles, Shield, Users2 } from 'lucide-react';
 import { RESTAURANT_INFO } from '../data/restaurantData';
 
@@ -30,6 +31,7 @@ export const ReservationsPage: React.FC = () => {
           {/* Reservation Form (8 cols on lg) */}
           <div className="lg:col-span-8">
             <ReservationForm />
+            <SupabaseReservationsManager />
           </div>
 
           {/* Concierge & Dining Information Sidebar (4 cols on lg) */}
